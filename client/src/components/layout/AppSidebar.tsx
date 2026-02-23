@@ -31,7 +31,7 @@ export function AppSidebar() {
           </div>
           <div>
             <h2 className="text-lg font-bold tracking-tight text-foreground">Cursor Mastery</h2>
-            <p className="text-xs font-medium text-muted-foreground">Interactive Course</p>
+            <p className="text-xs font-medium text-muted-foreground">Curso Interativo</p>
           </div>
         </div>
       </SidebarHeader>
@@ -39,7 +39,7 @@ export function AppSidebar() {
       <SidebarContent className="px-2 pt-4">
         <SidebarGroup>
           <SidebarGroupLabel className="px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
-            Curriculum
+            Modulos
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-2">
             <SidebarMenu>
@@ -80,7 +80,7 @@ export function AppSidebar() {
                                 {module.title}
                               </span>
                               <span className="text-xs text-muted-foreground mt-1">
-                                Module {module.order}
+                                Modulo {module.order}
                               </span>
                             </div>
                           </Link>
@@ -94,7 +94,7 @@ export function AppSidebar() {
                                 {module.title}
                               </span>
                               <span className="text-xs text-muted-foreground mt-1">
-                                Locked
+                                Bloqueado
                               </span>
                             </div>
                           </div>

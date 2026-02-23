@@ -34,7 +34,7 @@ export default function Home() {
           <div className="absolute inset-0 rounded-2xl border-4 border-primary/20 blur-sm" />
         </div>
         <p className="text-lg font-medium text-muted-foreground animate-pulse">
-          Loading curriculum...
+          Carregando o curso...
         </p>
       </div>
     </div>

@@ -37,12 +37,12 @@ export default function ModulePage() {
         <div className="rounded-full bg-destructive/10 p-4">
           <span className="text-4xl">🤔</span>
         </div>
-        <h2 className="text-2xl font-bold">Module Not Found</h2>
+        <h2 className="text-2xl font-bold">Modulo nao encontrado</h2>
         <p className="max-w-md text-muted-foreground">
-          We couldn't find the module you're looking for. It might have been moved or doesn't exist.
+          Nao foi possivel encontrar o modulo que voce esta procurando.
         </p>
         <Button onClick={() => setLocation("/")} className="mt-4 hover-elevate">
-          Return to Home
+          Voltar ao Inicio
         </Button>
       </div>
     );
@@ -63,13 +63,13 @@ export default function ModulePage() {
           <span className="text-4xl text-muted-foreground">🔒</span>
         </div>
         <div>
-          <h2 className="text-3xl font-bold mb-2">Module Locked</h2>
+          <h2 className="text-3xl font-bold mb-2">Modulo Bloqueado</h2>
           <p className="max-w-md text-muted-foreground text-lg">
-            Please complete the previous modules before accessing this content.
+            Complete os modulos anteriores para acessar este conteudo.
           </p>
         </div>
         <Button onClick={() => setLocation("/")} size="lg" className="mt-4 hover-elevate">
-          Go to Current Module
+          Ir para o Modulo Atual
         </Button>
       </div>
     );
@@ -92,11 +92,11 @@ export default function ModulePage() {
         {/* Header Breadcrumb / Tag */}
         <div className="mb-8 flex items-center gap-2 text-sm font-medium text-primary">
           <GraduationCap className="h-4 w-4" />
-          <span>Module {moduleData.order}</span>
+          <span>Modulo {moduleData.order}</span>
           {alreadyCompleted && (
             <span className="ml-3 inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs text-green-600 dark:text-green-400">
               <CheckCircle2 className="h-3 w-3" />
-              Completed
+              Concluido
             </span>
           )}
         </div>
@@ -122,7 +122,7 @@ export default function ModulePage() {
               className="hover-elevate gap-2 px-6 py-6 text-base h-auto group"
             >
               <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-              Previous Module
+              Modulo Anterior
             </Button>
           ) : (
             <div /> // empty div to maintain flex-between spacing
@@ -134,7 +134,7 @@ export default function ModulePage() {
               disabled={!isCompleted(moduleData.id)}
               className="hover-elevate gap-2 px-8 py-6 text-base font-semibold h-auto group bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             >
-              Next Module
+              Proximo Modulo
               <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
           ) : (
@@ -143,7 +143,7 @@ export default function ModulePage() {
               disabled={!isCompleted(moduleData.id)}
               className="hover-elevate gap-2 px-8 py-6 text-base font-bold h-auto bg-gradient-to-r from-primary to-purple-500 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 disabled:opacity-50"
             >
-              Finish Course
+              Concluir Curso
               <GraduationCap className="h-5 w-5" />
             </Button>
           )}

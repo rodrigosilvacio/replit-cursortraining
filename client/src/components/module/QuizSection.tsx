@@ -70,7 +70,7 @@ export function QuizSection({ questions, onComplete, isAlreadyCompleted }: QuizS
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
           <AlertCircle className="h-5 w-5 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold tracking-tight">Assimilation Check</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Perguntas de Assimilacao</h2>
       </div>
 
       <div className="space-y-8">
@@ -160,7 +160,7 @@ export function QuizSection({ questions, onComplete, isAlreadyCompleted }: QuizS
                           </div>
                           <div>
                             <p className="font-semibold mb-1">
-                              {isCorrect ? "Correct!" : "Not quite right."}
+                              {isCorrect ? "Correto!" : "Nao esta correto."}
                             </p>
                             <p className="text-sm opacity-90 leading-relaxed">
                               {question.explanation}
@@ -173,7 +173,7 @@ export function QuizSection({ questions, onComplete, isAlreadyCompleted }: QuizS
                                 onClick={() => handleRetry(question.id)}
                                 className="mt-4 hover-elevate bg-background"
                               >
-                                Try Again
+                                Tentar Novamente
                               </Button>
                             )}
                           </div>
@@ -190,7 +190,7 @@ export function QuizSection({ questions, onComplete, isAlreadyCompleted }: QuizS
                       disabled={selectedOption === undefined}
                       className="hover-elevate px-8"
                     >
-                      Submit Answer
+                      Verificar Resposta
                     </Button>
                   </div>
                 )}

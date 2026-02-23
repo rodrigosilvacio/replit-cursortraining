@@ -65,11 +65,11 @@ export default function Completion() {
         </div>
 
         <h1 className="mb-4 text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          Course Completed!
+          Curso Concluido!
         </h1>
         
         <p className="mx-auto mb-10 max-w-xl text-xl text-muted-foreground leading-relaxed">
-          Incredible work! You've mastered all the modules and completed the interactive assimilation checks. You are now ready to build amazing things with Cursor.
+          Trabalho incrivel! Voce dominou todos os modulos e completou todas as perguntas de assimilacao. Agora voce esta pronto para construir coisas incriveis com o Cursor.
         </p>
 
         <Button 
@@ -78,7 +78,7 @@ export default function Completion() {
           className="hover-elevate h-14 px-8 text-lg font-semibold rounded-full"
         >
           <ArrowLeft className="mr-2 h-5 w-5" />
-          Back to Curriculum
+          Voltar ao Curso
         </Button>
       </motion.div>
     </div>
