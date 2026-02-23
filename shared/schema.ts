@@ -1,18 +1,30 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const modules = pgTable("modules", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  order: integer("order").notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const questions = pgTable("questions", {
+  id: serial("id").primaryKey(),
+  moduleId: integer("module_id").notNull(),
+  questionText: text("question_text").notNull(),
+  options: jsonb("options").notNull().$type<string[]>(),
+  correctOptionIndex: integer("correct_option_index").notNull(),
+  explanation: text("explanation").notNull(),
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export const insertModuleSchema = createInsertSchema(modules).omit({ id: true });
+export const insertQuestionSchema = createInsertSchema(questions).omit({ id: true });
+
+export type Module = typeof modules.$inferSelect;
+export type InsertModule = z.infer<typeof insertModuleSchema>;
+export type Question = typeof questions.$inferSelect;
+export type InsertQuestion = z.infer<typeof insertQuestionSchema>;
+
+export type ModuleWithQuestions = Module & { questions: Question[] };

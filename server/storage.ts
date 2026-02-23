@@ -1,38 +1,45 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import {
+  modules,
+  questions,
+  type Module,
+  type InsertModule,
+  type Question,
+  type InsertQuestion,
+} from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getModules(): Promise<Module[]>;
+  getModuleBySlug(slug: string): Promise<Module | undefined>;
+  getQuestionsForModule(moduleId: number): Promise<Question[]>;
+  createModule(module: InsertModule): Promise<Module>;
+  createQuestion(question: InsertQuestion): Promise<Question>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getModules(): Promise<Module[]> {
+    return await db.select().from(modules).orderBy(modules.order);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getModuleBySlug(slug: string): Promise<Module | undefined> {
+    const [module] = await db.select().from(modules).where(eq(modules.slug, slug));
+    return module;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getQuestionsForModule(moduleId: number): Promise<Question[]> {
+    return await db.select().from(questions).where(eq(questions.moduleId, moduleId));
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createModule(insertModule: InsertModule): Promise<Module> {
+    const [module] = await db.insert(modules).values(insertModule).returning();
+    return module;
+  }
+
+  async createQuestion(insertQuestion: InsertQuestion): Promise<Question> {
+    const [question] = await db.insert(questions).values(insertQuestion).returning();
+    return question;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
